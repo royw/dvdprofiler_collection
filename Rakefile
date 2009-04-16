@@ -11,6 +11,14 @@ begin
     gem.authors = ["Roy Wright"]
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+
+    gem.files.reject! do |fn|
+      result = false
+      basename = File.basename(fn)
+      result = true if basename =~ /^tt\d+\.html/
+      result = true if basename =~ /^Collection.yaml/
+      result
+    end
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"

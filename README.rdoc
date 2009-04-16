@@ -1,6 +1,32 @@
 = dvdprofiler_collection
 
-Description goes here.
+dvdprofiler_collection is a companion to royw-imdb and royw-tmdb gems.
+
+This is an interface for the exported Collection.xml from DVD Profiler 3.5.1.
+
+Because the file size and parsing time of the Collection.xml can grow quite
+large, we extract only part of the meta-data then save into a Collection.yaml
+file which parses much faster.  On my 3GHz quad core (alas with ruby only using
+a single core), xml parsing is about 1:50 for about 1000 titles.
+
+The Collection model supports fuzzy matching of titles.
+
+The DvdprofilerProfile model provides a clean interface to the profiles using
+first() and all() class methods.  Searches can be by ISBN or title.
+Optionally a year may be provided to refine the search.
+
+The actual meta-data is accessed via the dvd_hash attribute.
+
+Examples:
+
+profile = DvdprofilerProfile.first(:isbn => '786936735390')
+profile = DvdprofilerProfile.first(:title => 'Sabrina', :year => '1995')
+profiles = DvdprofilerProfile.all(:title => 'Sabrina')
+
+puts profile.isbn
+puts profile.title
+
+profile.dvd_hash.each {|k,v| puts "#{k} => #{v}"}
 
 == Copyright
 
