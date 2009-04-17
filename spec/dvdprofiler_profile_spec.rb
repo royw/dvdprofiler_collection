@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
 require 'tempfile'
+# require 'log4r'
 
 # Time to add your specs!
 # http://rspec.info/
@@ -8,16 +9,11 @@ require 'tempfile'
 describe "DvdprofilerProfile" do
 
   before(:all) do
-#     logger = Log4r::Logger.new('dvdprofiler2xbmc')
-#     logger.outputters = Log4r::StdoutOutputter.new(:console)
+#     @logger = Log4r::Logger.new('dvdprofiler2xbmc')
+#     @logger.outputters = Log4r::StdoutOutputter.new(:console)
 #     Log4r::Outputter[:console].formatter  = Log4r::PatternFormatter.new(:pattern => "%m")
-#     logger.level = Log4r::WARN
-#     AppConfig.default
-#     AppConfig[:logger] = logger
-#     AppConfig.load
-#     AppConfig[:collection_filespec] = 'spec/samples/Collection.xml'
+#     @logger.level = Log4r::DEBUG
     File.mkdirs(TMPDIR)
-#     AppConfig[:logger].warn { "\nDvdprofilerProfile Specs" }
     puts "\nDvdprofilerProfile Specs"
   end
 
@@ -73,6 +69,20 @@ describe "DvdprofilerProfile" do
   it "should find the other single movie using the year when multiple movies have the same title" do
     profiles = DvdprofilerProfile.all(:title => 'Sabrina', :year => '1954')
     (profiles.length.should == 1) && (profiles.first.isbn.should == '097360540246')
+  end
+
+  it "should save to a file" do
+    filespec = get_temp_filename
+    profile = DvdprofilerProfile.first(:title => 'Sabrina', :year => '1995')
+    profile.save(filespec)
+    (File.exist?(filespec) && (File.size(filespec) > 0)).should be_true
+  end
+
+  def get_temp_filename
+    outfile = Tempfile.new('dvdprofiler_profile_spec', TMPDIR)
+    filespec = outfile.path
+    outfile.unlink
+    filespec
   end
 
 end
