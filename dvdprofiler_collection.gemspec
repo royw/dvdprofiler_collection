@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{dvdprofiler_collection}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roy Wright"]
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "lib/numeric_extensions.rb",
     "lib/object_extensions.rb",
     "lib/string_extensions.rb",
+    "spec/collection_spec.rb",
     "spec/dvdprofiler_profile_spec.rb",
     "spec/samples/Collection.xml",
     "spec/spec_helper.rb"
@@ -38,6 +39,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{TODO}
   s.test_files = [
+    "spec/collection_spec.rb",
     "spec/spec_helper.rb",
     "spec/dvdprofiler_profile_spec.rb"
   ]
