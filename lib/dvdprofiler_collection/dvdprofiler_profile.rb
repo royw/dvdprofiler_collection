@@ -116,7 +116,7 @@ class DvdprofilerProfile
       xml = self.to_xml
       unless xml.blank?
         @logger.debug { "saving #{filespec}" }
-        DvdProfiler2Xbmc.save_to_file(filespec, xml)
+        save_to_file(filespec, xml)
       end
     rescue Exception => e
       @logger.error { "Unable to save dvdprofiler profile to #{filespec} - #{e.to_s}" }
