@@ -6,8 +6,6 @@ require 'yaml'
 require 'xmlsimple'
 require 'ftools'
 require 'mash'
-# require 'log4r'
-require 'ruby-debug'
 
 require 'module_extensions'
 require 'numeric_extensions'
