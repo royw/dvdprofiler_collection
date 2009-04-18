@@ -9,23 +9,35 @@ class OptionalLogger
   end
 
   # debug {...}
-  def debug(&blk)
-    @logger.debug(blk.call) unless @logger.nil?
+  def debug(msg=nil, &blk)
+    unless @logger.nil?
+      @logger.debug(msg) unless msg.nil?
+      @logger.debug(blk.call) unless blk.nil?
+    end
   end
 
   # info {...}
-  def info(&blk)
-    @logger.info(blk.call) unless @logger.nil?
+  def info(msg=nil, &blk)
+    unless @logger.nil?
+      @logger.info(msg) unless msg.nil?
+      @logger.info(blk.call) unless blk.nil?
+    end
   end
 
   # warn {...}
-  def warn(&blk)
-    @logger.warn(blk.call) unless @logger.nil?
+  def warn(msg=nil, &blk)
+    unless @logger.nil?
+      @logger.warn(msg) unless msg.nil?
+      @logger.warn(blk.call) unless blk.nil?
+    end
   end
 
   # error {...}
-  def error(&blk)
-    @logger.error(blk.call) unless @logger.nil?
+  def error(msg=nil, &blk)
+    unless @logger.nil?
+      @logger.error(msg) unless msg.nil?
+      @logger.error(blk.call) unless blk.nil?
+    end
   end
 end
 
