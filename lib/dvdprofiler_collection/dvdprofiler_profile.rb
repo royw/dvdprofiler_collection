@@ -123,6 +123,8 @@ class DvdprofilerProfile
     end
   end
 
+  protected
+
   def save_to_file(filespec, data)
     new_filespec = filespec + '.new'
     File.open(new_filespec, "w") do |file|
