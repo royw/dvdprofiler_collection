@@ -11,6 +11,7 @@ begin
     gem.authors = ["Roy Wright"]
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency('royw-read_page_cache','>= 0.0.1')
 
     gem.files.reject! do |fn|
       result = false
@@ -52,5 +53,10 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "dvdprofiler_collection #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+desc "stalk github until gem is published"
+task :stalk do
+  `gemstalk royw dvdprofiler_collection`
 end
 
