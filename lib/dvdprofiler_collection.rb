@@ -7,12 +7,10 @@ require 'xmlsimple'
 require 'ftools'
 require 'mash'
 
-require 'module_extensions'
-require 'numeric_extensions'
-require 'kernel_extensions'
-require 'file_extensions'
-require 'object_extensions'
-require 'string_extensions'
+# royw gems on github
+require 'roys_extensions'
+
+# local files
 require 'dvdprofiler_collection/optional_logger'
 require 'dvdprofiler_collection/collection'
 require 'dvdprofiler_collection/dvdprofiler_profile'
