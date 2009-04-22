@@ -26,6 +26,8 @@ class DvdprofilerProfile
     # :isbn_dvd_hash, :title_isbn_hash, :isbn_title_hash
     result = []
 
+    options[:year] = (options[:year].to_i > 0 ? options[:year] : nil) unless options[:year].blank?
+
     # try finding by isbn first
     if options.has_key?(:isbn) && !options[:isbn].blank?
       dvd_hash = collection.isbn_dvd_hash[options[:isbn]]
@@ -96,8 +98,8 @@ class DvdprofilerProfile
   def initialize(dvd_hash, isbn, title, logger)
     @dvd_hash = dvd_hash
     @isbn = isbn
-    @title = title
-    @title ||= @dvd_hash[:title]
+    @title = @dvd_hash[:title]
+    @title ||= title
     @logger = OptionalLogger.new(logger)
   end
 
